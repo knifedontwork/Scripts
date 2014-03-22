@@ -1,0 +1,24 @@
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.wrappers.Tile;
+
+
+public class Crafting extends Task{
+	public Tile Alter = new Tile(2400,4844,0);
+	public Crafting(MethodContext ctx) {
+		super(ctx);
+		
+	}
+
+	@Override
+	public boolean activate() {
+		// TODO Auto-generated method stub
+		return ctx.players.local().getLocation() == Alter;
+	}
+
+	@Override
+	public void excecute() {
+		
+		
+	}
+
+}

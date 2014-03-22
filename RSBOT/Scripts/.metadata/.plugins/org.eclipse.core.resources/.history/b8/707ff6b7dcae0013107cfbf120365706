@@ -1,0 +1,25 @@
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.wrappers.Area;
+
+
+public class Withdraw extends Task{
+	Area arg;
+	public Withdraw(MethodContext ctx) {
+		super(ctx);
+	}
+
+	@Override
+	public boolean activate() {
+	
+		
+		return ctx.backpack.select().count() < 28 
+				&& ctx.players.within(arg);
+		
+	}
+
+	@Override
+	public void excecute() {
+				
+	}
+
+}

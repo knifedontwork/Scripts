@@ -1,0 +1,23 @@
+import org.powerbot.script.methods.MethodContext;
+
+
+public class Crafting extends Task{
+
+	public Crafting(MethodContext ctx) {
+		super(ctx);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public boolean activate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void excecute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

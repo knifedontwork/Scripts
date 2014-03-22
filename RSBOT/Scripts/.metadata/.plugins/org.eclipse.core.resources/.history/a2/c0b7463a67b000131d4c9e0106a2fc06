@@ -1,0 +1,66 @@
+import org.powerbot.script.lang.ItemQuery;
+import org.powerbot.script.methods.Backpack;
+import org.powerbot.script.methods.Bank;
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.wrappers.Area;
+import org.powerbot.script.wrappers.Item;
+
+
+public class Withdraw extends Task{
+	
+	public boolean large,medium,small;
+	public boolean flag;
+	public int largePouch = 5512;
+	public int mediumPouch = 5510;
+	public int smallPouch = 5509;
+	public int pureEssence = 7936;
+	
+	
+	Area arg;
+	public Withdraw(MethodContext ctx) {
+		super(ctx);
+	}
+
+	@Override
+	public boolean activate() {
+	
+		
+		return ctx.backpack.select().count() < 28;
+						
+	}
+
+	@Override
+	public void excecute() {
+				withdraw();
+				fill();
+	}
+	public void withdraw(){
+		ctx.bank.open();
+		ctx.bank.withdraw(smallPouch, 1);
+		ctx.bank.withdraw(mediumPouch, 1);
+		ctx.bank.withdraw(largePouch, 1);
+		ctx.bank.withdraw(pureEssence, Bank.Amount.ALL);
+		}
+	public void fill(){
+		if(!ctx.backpack.select().id(5509).isEmpty()&& flag == false){
+		final Item SmallPouch = ctx.backpack.getItemAt(smallPouch); 
+				SmallPouch.interact("Fill");
+				flag = true; 
+		}
+		flag = false;
+		if(!ctx.backpack.select().id(5510).isEmpty()&& flag == false){
+			final Item MediumPouch = ctx.backpack.getItemAt(mediumPouch);
+			MediumPouch.interact("Fill");
+			flag = true;
+		}
+		flag = false;
+		if(ctx.backpack.select().id(5512,5513).isEmpty()&& flag ==false){
+			final Item LargPouch = ctx.backpack.getItemAt(largePouch);
+			LargPouch.interact("Fill");
+			flag = true;
+		}
+		flag = false;
+	}
+	}
+
+

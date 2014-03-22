@@ -1,0 +1,41 @@
+import org.powerbot.script.methods.MethodContext;
+
+
+public class KR_C extends Task{
+	
+	//Ids 
+	//Pouches 
+	int SmallPouch = 5509;
+	int MediumPouch = 5510;
+	int LargePouch = 5512;
+	int GiantPouch = 5514;
+	int PureEsscence = 7936;
+	int[] Banker = {2759,553};
+	int Wall = 6926;
+	int Wizard = 2257;
+	int[] Entrances = {7149,7150,7151,7152,7153};
+	int Rift = 32255;
+	int Alter = 2486;
+	int Mage = 2262;
+	
+	
+	
+
+	public KR_C(MethodContext ctx) {
+		super(ctx);
+		
+	}
+
+	@Override
+	public boolean activate() {
+		
+		return false;
+	}
+
+	@Override
+	public void excecute() {
+		
+		
+	}
+
+}

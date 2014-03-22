@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.MethodProvider"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.Bank.Amount"/>
+<fullyQualifiedTypeName name="org.powerbot.script.PollingScript"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.Bank"/>
+<fullyQualifiedTypeName name="org.powerbot.script.Manifest"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Path"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.GameObject"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Npc"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.Mouse"/>
+<fullyQualifiedTypeName name="org.powerbot.bot.client.input.Mouse"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Tile"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Item"/>
+</qualifiedTypeNameHistroy>

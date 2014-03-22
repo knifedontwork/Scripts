@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+import org.powerbot.script.PollingScript;
+
+@Manifest(name = "Please", authors = "mhm", description = "worth")
+public class KR_C extends PollingScript{
+
+	private List<Task> taskList = new ArrayList<>();
+			
+	
+
+	@Override
+    public void start() {
+        taskList.add(new Chop(getContext()));
+        taskList.add(new Drop(getContext()));
+    }
+
+
+	
+
+	@Override
+	public int poll() {
+	        for (Task task : taskList) {
+	            if (task.activate()) {
+	                task.execute();
+	                return 500;
+	            }
+	        }
+	        return 500;
+	    }
+	}
+
+
