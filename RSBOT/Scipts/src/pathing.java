@@ -1,4 +1,6 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Item;
@@ -17,14 +19,14 @@ public class pathing extends Task{;
 	@Override
 	public boolean activate() {
 		
-		return !ctx.bank.isOpen() && ctx.players.local().getLocation().x != (2400) && ctx.players.local().getLocation().y != (4844) ;
+		return !ctx.bank.isOpen() && ctx.players.local().getLocation().x != (2400) && ctx.backpack.contains(Essence) ;
 	}
 
 	@Override
 	public void excecute() {
-		if(ctx.players.local().getLocation().y<(3522)&& !ctx.backpack.isEmpty()){
+		if(ctx.players.local().getLocation().y<(3522)){
 		pathToWall();
-                }else if(ctx.players.local().getLocation().y<4000){
+                }else if(ctx.players.local().getLocation().y<(4000) && ctx.players.local().getLocation().y >= 3523){
                     pathToWizard();
 		}else if(ctx.players.local().getLocation().y>(4001)&&!ctx.backpack.isEmpty()){
 			pathToEntrance();
@@ -65,24 +67,40 @@ public class pathing extends Task{;
 	
 	public void pathToEntrance(){
 		final GameObject Entrances = ctx.objects.nearest().id(7148).poll();
+                final GameObject Rift = ctx.objects.select().id(7133).poll();
 		final Tile abyssTile = new Tile(3037, 4856, 0);
 		final Tile RiftTile = new Tile(3035, 4842, 0);
 		final Path Abysspath = ctx.movement.findPath(abyssTile);
 		final Path Riftpath = ctx.movement.findPath(RiftTile);
 		Abysspath.traverse();
-		if(Entrances!=null&& ctx.players.local().getLocation().y >= 4856){
+		if(Entrances!=null && ctx.players.local().getLocation().y >= 4856){
 			Entrances.click();
 		}
-		if(ctx.players.local().getLocation() != RiftTile && !ctx.players.local().isInMotion() && Entrances.click() == false){
+		if(ctx.players.local().getLocation().y <= (4845) && ctx.players.local().isIdle() && ctx.players.local().getAnimation() == -1){
 		Riftpath.traverse();
-		ctx.movement.stepTowards(RiftTile);
-		ctx.camera.setPitch(40);
-		ctx.camera.setAngle(175);
-		ctx.mouse.click(395,240, false);
-		ctx.mouse.click(true);	
+                System.out.println("Walking to rift");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                   Thread.currentThread().interrupt();
+                }
+                if(ctx.players.local().isIdle()){
+                System.out.println("Clicking on rift");
+                ctx.camera.setAngle(175);
+		ctx.camera.setPitch(71);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                   Thread.currentThread().interrupt();
+                }
+                Rift.hover();
+                ctx.mouse.move(ctx.mouse.getLocation().x , ctx.mouse.getLocation().y-50);
+                ctx.mouse.click(true);
 		}
 		}
+        }
+}
 		
-	}
+	
 	
 

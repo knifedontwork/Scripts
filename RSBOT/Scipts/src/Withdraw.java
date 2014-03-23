@@ -15,7 +15,7 @@ public class Withdraw extends Task{
 	public int smallPouch = 5509;
 	public int pureEssence = 7936;
 	Item Runes = ctx.backpack.select().id(561).poll();
-	public Tile Alter = new Tile(2400,4844,0);
+        final Tile bank = new Tile(3093, 3495, 0);
 	Area arg;
 	public Withdraw(MethodContext ctx) {
 		super(ctx);
@@ -25,7 +25,7 @@ public class Withdraw extends Task{
 	public boolean activate() {
 	
 		
-		return ctx.backpack.select().count()<28 &&  ctx.players.local().getLocation().x != (2400) && ctx.players.local().getLocation().y < (4843);
+		return ctx.backpack.select().count()<28 &&  !ctx.backpack.contains(Runes) && ctx.players.local().getLocation().y !=(4843);
 						
 	}
 
@@ -46,7 +46,6 @@ public class Withdraw extends Task{
 		ctx.bank.withdraw(largePouch, 1);
 		
 		ctx.bank.withdraw(largePouch2, 1);
-		
 		
 		ctx.bank.withdraw(pureEssence, Bank.Amount.ALL);
 		

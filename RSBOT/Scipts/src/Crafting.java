@@ -30,13 +30,18 @@ public class Crafting extends Task{
 		Item LargePouch = ctx.backpack.select().id(5513,5512).poll();
 		Item GiantPouch = ctx.backpack.select().id(5514).poll();
 		GameObject Alter = ctx.objects.nearest().id(2486).poll();
-		Alter.interact("Craft-rune");
+		Alter.click();
 		if(ctx.backpack.contains(GiantPouch)&& flag == false && ctx.players.local().getAnimation() ==-1){
 			GiantPouch.interact("Empty");
 			Alter.interact("Craft-rune");
 			flag = true;
 		}else{
 			if(ctx.players.local().getAnimation() ==-1){
+                         try {
+                         Thread.sleep(2000);
+                         } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+            }
 			SmallPouch.interact("Empty");
 			MediumPouch.interact("Empty");
 			LargePouch.interact("Empty");

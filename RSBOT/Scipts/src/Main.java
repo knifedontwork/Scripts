@@ -5,7 +5,7 @@ import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.wrappers.Tile;
 
-@Manifest(name = "YOLO", authors = "mhm", description = "worth")
+@Manifest(name = "KRC", authors = "mhm", description = "worth")
 public class Main extends PollingScript{
 	public Tile Alter = new Tile(2400,4844,0);
 	private List<Task> taskList = new ArrayList<>();
@@ -14,6 +14,7 @@ public class Main extends PollingScript{
 
 	@Override
     public void start() {
+        ctx.players.local().getLocation();
         taskList.add(new Withdraw(ctx));
         taskList.add(new pathing(ctx));
         taskList.add(new Crafting(ctx));
@@ -29,10 +30,10 @@ public class Main extends PollingScript{
 	        for (Task task : taskList) {
 	            if (task.activate()) {
 	                task.excecute();
-	                return 500;
+	                return 1000;
 	            }
 	        }
-	        return 500;
+	        return 1000;
 	    }
 	}
 
