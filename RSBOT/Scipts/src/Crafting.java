@@ -1,3 +1,6 @@
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.powerbot.script.methods.Hud;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Item;
@@ -29,25 +32,29 @@ public class Crafting extends Task{
 		Item MediumPouch = ctx.backpack.select().id(5510).poll();
 		Item LargePouch = ctx.backpack.select().id(5513,5512).poll();
 		Item GiantPouch = ctx.backpack.select().id(5514).poll();
-		GameObject Alter = ctx.objects.nearest().id(2486).poll();
-		Alter.click();
+		GameObject Alter = ctx.objects.select().id(2486).poll();
+                ctx.hud.view(Hud.Window.BACKPACK);
+                ctx.camera.turnTo(Alter);
+                Alter.interact("Crafft-rune");
 		if(ctx.backpack.contains(GiantPouch)&& flag == false && ctx.players.local().getAnimation() ==-1){
 			GiantPouch.interact("Empty");
 			Alter.interact("Craft-rune");
 			flag = true;
 		}else{
+                        Alter.interact("Craft-rune");
 			if(ctx.players.local().getAnimation() ==-1){
-                         try {
-                         Thread.sleep(2000);
-                         } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-            }
-			SmallPouch.interact("Empty");
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException ex) {
+                                Thread.interrupted();
+                            }
+                        SmallPouch.interact("Empty");
 			MediumPouch.interact("Empty");
 			LargePouch.interact("Empty");
-			Alter.interact("Craft-rune");
+			Alter.interact("Craft");
 			}
+                        }
 		}
 	}
 
-}
+

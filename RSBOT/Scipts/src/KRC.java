@@ -6,8 +6,11 @@ import org.powerbot.script.PollingScript;
 import org.powerbot.script.wrappers.Tile;
 
 @Manifest(name = "KRC", authors = "mhm", description = "worth")
-public class Main extends PollingScript{
+public class KRC extends PollingScript{
+        public boolean flag;
 	public Tile Alter = new Tile(2400,4844,0);
+       
+      
 	private List<Task> taskList = new ArrayList<>();
 			
 	
@@ -18,7 +21,11 @@ public class Main extends PollingScript{
         taskList.add(new Withdraw(ctx));
         taskList.add(new pathing(ctx));
         taskList.add(new Crafting(ctx));
+        taskList.add(new Teleport(ctx));
         taskList.add(new Deposit(ctx));
+        flag=false;
+        
+        
        
     }
 
@@ -33,7 +40,7 @@ public class Main extends PollingScript{
 	                return 1000;
 	            }
 	        }
-	        return 1000;
+	        return 500;
 	    }
 	}
 

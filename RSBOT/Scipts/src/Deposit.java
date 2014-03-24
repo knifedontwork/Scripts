@@ -22,7 +22,7 @@ import org.powerbot.script.wrappers.Widget;
  * @author Austin
  */
 public class Deposit extends Task{
-    public boolean flag;
+    
     Item Essence = ctx.backpack.select().id(7936).poll();
     Item Rune = ctx.backpack.select().id(561).poll();
     final Tile Tp = new Tile(3067, 3505, 0);
@@ -32,12 +32,12 @@ public class Deposit extends Task{
 
     @Override
     public boolean activate() {
-        return  ctx.players.local().getLocation().y == (4843) || ctx.backpack.contains(Rune) ;
+        return  ctx.backpack.select().count()<28;
     }
 
     @Override
     public void excecute() {
-       teleport();
+    
        depositItems();
     }
     public void depositItems(){
@@ -46,27 +46,14 @@ public class Deposit extends Task{
         final Path Bankpath = ctx.movement.findPath(bank);
         if(ctx.players.local().isIdle()){
 		Bankpath.traverse();
+        }
                 ctx.camera.turnTo(bank);
                 ctx.bank.open();
                 ctx.bank.deposit(561, Bank.Amount.ALL);
         }
+
         
     }
-    public void teleport(){
-       
-        Component Tp =  ctx.widgets.get(1092,26);
-        Component Map = ctx.widgets.get(1465,10);
-         if(flag == false && ctx.players.local().getLocation().y == (4843)){
-            Map.click();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            Tp.click();
-           flag = true;
-            
-        }
-    }
-    }
+    
+    
 
